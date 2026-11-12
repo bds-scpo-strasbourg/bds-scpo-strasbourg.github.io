@@ -6,6 +6,7 @@
     <title>Strossteam — BDS Sciences Po Strasbourg</title>
     <!-- Intégration de Tailwind CSS pour le style -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="logo-bds.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -43,10 +44,8 @@
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 20px 20px;"></div>
         
         <div class="container mx-auto px-4 py-8 relative z-10 flex flex-col items-center justify-center">
-            <!-- Icône de sport stylisée (BDS) -->
-            <svg class="w-16 h-16 mb-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
-            </svg>
+            <!-- Logo du BDS -->
+            <img src="logo-bds.png" alt="Logo du BDS Strossteam - Sciences Po Strasbourg" class="w-36 md:w-48 h-auto mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.35)]">
             <h1 class="text-3xl md:text-5xl font-extrabold text-center tracking-tight uppercase">
                 Strossteam
             </h1>
@@ -183,7 +182,6 @@
         { emoji: "🏊", sport: "Natation", nom: "", instagram: "strossteam_natation", email: "", telephone: "" },
         { emoji: "🏓", sport: "Ping-pong", nom: "", instagram: "strossteam_ping", email: "", telephone: "" },
         { emoji: "🕺", sport: "Danse", nom: "", instagram: "strossteam_danse", email: "", telephone: "" },
-        { emoji: "🥏", sport: "Ultimate", nom: "", instagram: "strossteam_ultimate", email: "", telephone: "" },
         { emoji: "🏋️", sport: "Muscu", nom: "", instagram: "strossteam_muscu", email: "", telephone: "" },
         { emoji: "🎯", sport: "Pétanque", nom: "", instagram: "strossteam_petanque", email: "", telephone: "" },
     ];
@@ -235,7 +233,7 @@
                 <div class="w-14 h-14 shrink-0 rounded-full bg-blue-800 text-white flex items-center justify-center text-2xl">${esc(r.emoji || "🏅")}</div>
                 <div class="min-w-0">
                     <h3 class="text-lg font-extrabold text-blue-900 uppercase">${esc(r.sport)}</h3>
-                    <p class="text-gray-700 mb-2">${r.nom ? esc(r.nom) : "Compte Instagram de la section"}</p>
+                    ${r.nom ? `<p class="text-gray-700 mb-2">${esc(r.nom)}</p>` : ""}
                     ${insta ? lien("https://www.instagram.com/" + encodeURIComponent(insta) + "/", "📷 @" + esc(insta)) : ""}
                     ${r.email ? lien("mailto:" + r.email, "✉️ " + esc(r.email)) : ""}
                     ${r.telephone ? lien("tel:" + String(r.telephone).replace(/\s/g, ""), "📞 " + esc(r.telephone)) : ""}
