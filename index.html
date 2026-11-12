@@ -113,7 +113,7 @@
         <section id="contacts" class="scroll-mt-6 w-full max-w-6xl mt-16">
             <div class="mb-6">
                 <h2 class="text-3xl font-extrabold text-blue-900 uppercase tracking-tight">🤝 Contacts par sport</h2>
-                <p class="text-gray-600 mt-1">Une question sur une discipline ? Contacte directement son ou sa responsable.</p>
+                <p class="text-gray-600 mt-1">Une question sur une discipline ? Écris directement à la section sur Instagram.</p>
             </div>
             <div id="responsables" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
         </section>
@@ -170,6 +170,22 @@
        Exemple :
        { emoji: "⚽", sport: "Football", nom: "Prénom Nom", instagram: "pseudo", email: "", telephone: "" }, */
     const RESPONSABLES = [
+        { emoji: "💃", sport: "Pompom", nom: "", instagram: "scpompomstras", email: "", telephone: "" },
+        { emoji: "⚽", sport: "Foot", nom: "", instagram: "strossteam_foot", email: "", telephone: "" },
+        { emoji: "🏐", sport: "Volley", nom: "", instagram: "strossteam_volley", email: "", telephone: "" },
+        { emoji: "🤾", sport: "Handball", nom: "", instagram: "strossteam_hand", email: "", telephone: "" },
+        { emoji: "🏀", sport: "Basket", nom: "", instagram: "strossteam_basket", email: "", telephone: "" },
+        { emoji: "🏉", sport: "Rugby", nom: "", instagram: "strossteam_rugby", email: "", telephone: "" },
+        { emoji: "🎾", sport: "Tennis", nom: "", instagram: "strossteam__tennis", email: "", telephone: "" },
+        { emoji: "🏸", sport: "Badminton", nom: "", instagram: "strossteam_bad", email: "", telephone: "" },
+        { emoji: "🏃", sport: "Athlétisme", nom: "", instagram: "strossteam_athle", email: "", telephone: "" },
+        { emoji: "🥾", sport: "Outdoor (randonnée, trail, vélo)", nom: "", instagram: "strossteam_outdoor", email: "", telephone: "" },
+        { emoji: "🏊", sport: "Natation", nom: "", instagram: "strossteam_natation", email: "", telephone: "" },
+        { emoji: "🏓", sport: "Ping-pong", nom: "", instagram: "strossteam_ping", email: "", telephone: "" },
+        { emoji: "🕺", sport: "Danse", nom: "", instagram: "strossteam_danse", email: "", telephone: "" },
+        { emoji: "🥏", sport: "Ultimate", nom: "", instagram: "strossteam_ultimate", email: "", telephone: "" },
+        { emoji: "🏋️", sport: "Muscu", nom: "", instagram: "strossteam_muscu", email: "", telephone: "" },
+        { emoji: "🎯", sport: "Pétanque", nom: "", instagram: "strossteam_petanque", email: "", telephone: "" },
     ];
 
     (function () {
@@ -219,7 +235,7 @@
                 <div class="w-14 h-14 shrink-0 rounded-full bg-blue-800 text-white flex items-center justify-center text-2xl">${esc(r.emoji || "🏅")}</div>
                 <div class="min-w-0">
                     <h3 class="text-lg font-extrabold text-blue-900 uppercase">${esc(r.sport)}</h3>
-                    <p class="text-gray-700 mb-2">${esc(r.nom)}</p>
+                    <p class="text-gray-700 mb-2">${r.nom ? esc(r.nom) : "Compte Instagram de la section"}</p>
                     ${insta ? lien("https://www.instagram.com/" + encodeURIComponent(insta) + "/", "📷 @" + esc(insta)) : ""}
                     ${r.email ? lien("mailto:" + r.email, "✉️ " + esc(r.email)) : ""}
                     ${r.telephone ? lien("tel:" + String(r.telephone).replace(/\s/g, ""), "📞 " + esc(r.telephone)) : ""}
