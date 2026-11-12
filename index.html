@@ -64,10 +64,16 @@
                 Retrouvez ci-dessous le calendrier complet de tous nos entraînements et événements sportifs. 
                 <strong class="text-blue-800">Allez la Strossteam ! 💙🤍</strong>
             </p>
+            <!-- Accès rapide aux rubriques -->
+            <nav class="flex flex-wrap justify-center gap-3 mt-6">
+                <a href="#calendrier" class="px-5 py-2 rounded-full bg-blue-800 text-white font-semibold text-sm hover:bg-blue-700 transition-colors">📅 Calendrier</a>
+                <a href="#photos" class="px-5 py-2 rounded-full bg-white text-blue-800 border-2 border-blue-800 font-semibold text-sm hover:bg-blue-50 transition-colors">📸 Photos</a>
+                <a href="#contacts" class="px-5 py-2 rounded-full bg-white text-blue-800 border-2 border-blue-800 font-semibold text-sm hover:bg-blue-50 transition-colors">🤝 Contacts</a>
+            </nav>
         </div>
 
         <!-- Conteneur du Calendrier (Espace central pour l'Iframe) -->
-        <div class="w-full max-w-6xl bg-white rounded-2xl overflow-hidden calendar-shadow border border-gray-200 flex flex-col" style="min-height: 700px;">
+        <div id="calendrier" class="scroll-mt-6 w-full max-w-6xl bg-white rounded-2xl overflow-hidden calendar-shadow border border-gray-200 flex flex-col" style="min-height: 700px;">
             
             <!-- BARRE D'OUTILS FACTICE (juste pour le design du placeholder) -->
             <div class="bg-gray-50 border-b border-gray-200 p-4 flex justify-between items-center">
@@ -86,6 +92,31 @@
             </div>
 
         </div>
+
+        <!-- ===================== PHOTOS ===================== -->
+        <section id="photos" class="scroll-mt-6 w-full max-w-6xl mt-16">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-blue-900 uppercase tracking-tight">📸 Photos</h2>
+                    <p class="text-gray-600 mt-1">Les albums de nos derniers matchs et soirées.</p>
+                </div>
+                <div id="photoFilters" class="flex gap-1 bg-white border-2 border-blue-800 rounded-full p-1 self-start">
+                    <button data-f="tous" class="px-4 py-1.5 rounded-full text-sm font-semibold bg-blue-800 text-white">Tout</button>
+                    <button data-f="match" class="px-4 py-1.5 rounded-full text-sm font-semibold text-blue-800">Matchs</button>
+                    <button data-f="soiree" class="px-4 py-1.5 rounded-full text-sm font-semibold text-blue-800">Soirées</button>
+                </div>
+            </div>
+            <div id="albums" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </section>
+
+        <!-- ===================== CONTACTS ===================== -->
+        <section id="contacts" class="scroll-mt-6 w-full max-w-6xl mt-16">
+            <div class="mb-6">
+                <h2 class="text-3xl font-extrabold text-blue-900 uppercase tracking-tight">🤝 Contacts par sport</h2>
+                <p class="text-gray-600 mt-1">Une question sur une discipline ? Contacte directement son ou sa responsable.</p>
+            </div>
+            <div id="responsables" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </section>
     </main>
 
     <!-- Pied de page stylé -->
@@ -96,20 +127,108 @@
                 <p class="text-blue-300 text-sm mt-1">La Strossteam - Fierté et Dépassement</p>
             </div>
             
-            <div class="flex space-x-6">
-                <!-- Liens réseaux sociaux (factices) -->
-                <a href="#" class="text-white hover:text-blue-300 transition-colors">
-                    <span class="sr-only">Instagram</span>
+            <div class="flex flex-wrap justify-center gap-6">
+                <!-- Liens réseaux sociaux -->
+                <a href="https://www.instagram.com/strossteam_bds/" target="_blank" rel="noopener" class="flex items-center gap-2 text-white hover:text-blue-300 transition-colors">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
                     </svg>
+                    <span class="text-sm font-semibold">Instagram</span>
+                </a>
+                <a href="https://linktr.ee/strossteam_bds" target="_blank" rel="noopener" class="flex items-center gap-2 text-white hover:text-blue-300 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                    </svg>
+                    <span class="text-sm font-semibold">Linktree</span>
                 </a>
             </div>
         </div>
         <div class="container mx-auto px-4 mt-6 pt-6 border-t border-blue-800 text-center text-sm text-blue-400">
-            &copy; 2026 Bureau des Sports - Sciences Po Strasbourg. Cardo - Unistra. Tous droits réservés.
+            &copy; 2026 BUREAU DES SPORTS DE L'INSTITUT D'ETUDES POLITIQUES DE STRASBOURG
         </div>
     </footer>
+
+    <script>
+    /* =====================================================================
+       ✏️  CONTENU À METTRE À JOUR
+       ⚠️ Le code de ce site est public : n'ajoutez ni numéro de téléphone
+          perso ni adresse privée sans l'accord de la personne concernée.
+       ===================================================================== */
+
+    /* --- ALBUMS PHOTO ---
+       categorie : "match" ou "soiree"
+       date      : "AAAA-MM-JJ"
+       lien      : lien de partage du dossier Google Drive / album Google Photos
+       Exemple :
+       { titre: "Match de foot vs EM", date: "2026-10-15", categorie: "match", lien: "https://..." }, */
+    const ALBUMS = [
+    ];
+
+    /* --- RESPONSABLES PAR DISCIPLINE ---
+       emoji (facultatif), sport, nom, puis UN OU PLUSIEURS moyens de contact :
+       instagram (pseudo sans @), email, telephone
+       Exemple :
+       { emoji: "⚽", sport: "Football", nom: "Prénom Nom", instagram: "pseudo", email: "", telephone: "" }, */
+    const RESPONSABLES = [
+    ];
+
+    (function () {
+        const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+        const empty = (msg) => `
+            <div class="sm:col-span-2 lg:col-span-3 bg-white border-2 border-dashed border-blue-200 rounded-2xl p-8 text-center text-gray-600">
+                ${msg}
+            </div>`;
+
+        // ---------- Albums ----------
+        const fmt = d => { const x = new Date(d); return isNaN(x) ? esc(d) : x.toLocaleDateString("fr-FR", {day:"numeric", month:"long", year:"numeric"}); };
+        function renderAlbums(filtre) {
+            const list = ALBUMS
+                .filter(a => filtre === "tous" || a.categorie === filtre)
+                .sort((a, b) => new Date(b.date) - new Date(a.date));
+            document.getElementById("albums").innerHTML = list.length ? list.map(a => `
+                <a href="${esc(a.lien)}" target="_blank" rel="noopener" class="group bg-white rounded-2xl overflow-hidden calendar-shadow border border-gray-200 hover:-translate-y-1 transition-transform">
+                    <div class="h-36 flex items-center justify-center text-5xl ${a.categorie === "soiree" ? "bg-gradient-to-br from-blue-500 to-blue-900" : "bg-gradient-to-br from-blue-800 to-blue-950"}">
+                        ${a.categorie === "soiree" ? "🎉" : "🏆"}
+                    </div>
+                    <div class="p-4">
+                        <span class="inline-block text-xs font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-2.5 py-1 rounded-full mb-2">${a.categorie === "soiree" ? "Soirée" : "Match"}</span>
+                        <h3 class="font-bold text-gray-900 group-hover:text-blue-800">${esc(a.titre)}</h3>
+                        <p class="text-sm text-gray-500">${fmt(a.date)}</p>
+                    </div>
+                </a>`).join("")
+                : empty(`Les albums photos arrivent bientôt ! En attendant, retrouve-nous sur
+                         <a class="text-blue-800 font-semibold underline" href="https://www.instagram.com/strossteam_bds/" target="_blank" rel="noopener">Instagram</a> 📸`);
+        }
+        document.querySelectorAll("#photoFilters button").forEach(b => b.addEventListener("click", () => {
+            document.querySelectorAll("#photoFilters button").forEach(x => {
+                const on = x === b;
+                x.classList.toggle("bg-blue-800", on);
+                x.classList.toggle("text-white", on);
+                x.classList.toggle("text-blue-800", !on);
+            });
+            renderAlbums(b.dataset.f);
+        }));
+        renderAlbums("tous");
+
+        // ---------- Responsables ----------
+        const lien = (href, label) => `<a href="${esc(href)}" target="_blank" rel="noopener" class="block text-blue-800 font-semibold hover:underline truncate">${label}</a>`;
+        document.getElementById("responsables").innerHTML = RESPONSABLES.length ? RESPONSABLES.map(r => {
+            const insta = r.instagram ? String(r.instagram).replace(/^@/, "") : "";
+            return `
+            <div class="bg-white rounded-2xl p-5 calendar-shadow border border-gray-200 flex gap-4 items-start">
+                <div class="w-14 h-14 shrink-0 rounded-full bg-blue-800 text-white flex items-center justify-center text-2xl">${esc(r.emoji || "🏅")}</div>
+                <div class="min-w-0">
+                    <h3 class="text-lg font-extrabold text-blue-900 uppercase">${esc(r.sport)}</h3>
+                    <p class="text-gray-700 mb-2">${esc(r.nom)}</p>
+                    ${insta ? lien("https://www.instagram.com/" + encodeURIComponent(insta) + "/", "📷 @" + esc(insta)) : ""}
+                    ${r.email ? lien("mailto:" + r.email, "✉️ " + esc(r.email)) : ""}
+                    ${r.telephone ? lien("tel:" + String(r.telephone).replace(/\s/g, ""), "📞 " + esc(r.telephone)) : ""}
+                </div>
+            </div>`;
+        }).join("")
+        : empty("Les contacts des responsables de chaque discipline arrivent bientôt.");
+    })();
+    </script>
 
 </body>
 </html>
