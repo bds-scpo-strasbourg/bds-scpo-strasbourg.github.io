@@ -60,7 +60,7 @@
         
         <div class="max-w-3xl text-center mb-8">
             <p class="text-gray-700 text-lg">
-                Entraînements, matchs, photos des soirées et Insta des équipes : tout le BDS au même endroit.
+                Entraînements, photos des matchs et des soirées, Insta des équipes : tout le BDS au même endroit.
             </p>
             <!-- Accès rapide aux rubriques -->
             <nav class="flex flex-wrap justify-center gap-3 mt-6">
@@ -91,17 +91,15 @@
 
         <!-- ===================== PHOTOS ===================== -->
         <section id="photos" class="scroll-mt-6 w-full max-w-6xl mt-16">
-            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-blue-900 uppercase tracking-tight">📸 Photos</h2>
-                    <p class="text-gray-600 mt-1">Les albums de nos derniers matchs et soirées.</p>
-                </div>
-                <div id="photoFilters" class="flex gap-1 bg-white border-2 border-blue-800 rounded-full p-1 self-start">
-                    <button data-f="tous" class="px-4 py-1.5 rounded-full text-sm font-semibold bg-blue-800 text-white">Tout</button>
-                    <button data-f="match" class="px-4 py-1.5 rounded-full text-sm font-semibold text-blue-800">Matchs</button>
-                    <button data-f="soiree" class="px-4 py-1.5 rounded-full text-sm font-semibold text-blue-800">Soirées</button>
-                </div>
-            </div>
+            <h2 class="text-3xl font-extrabold text-blue-900 uppercase tracking-tight mb-8">📸 Photos</h2>
+
+            <!-- Matchs : un dossier par discipline -->
+            <h3 class="text-xl font-extrabold text-blue-800 uppercase tracking-tight mb-1">🏆 Matchs</h3>
+            <p class="text-gray-600 mb-5">Choisis ta discipline pour voir toutes les photos de ses matchs.</p>
+            <div id="sportsPhotos" class="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mb-14"></div>
+
+            <!-- Soirées -->
+            <h3 class="text-xl font-extrabold text-blue-800 uppercase tracking-tight mb-5">🎉 Soirées</h3>
             <div id="albums" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
         </section>
 
@@ -149,20 +147,37 @@
           perso ni adresse privée sans l'accord de la personne concernée.
        ===================================================================== */
 
-    /* --- ALBUMS PHOTO ---
-       categorie : "match" ou "soiree"
-       date      : "AAAA-MM-JJ" (facultatif : sans date, les albums gardent l'ordre de la liste, le plus récent en premier)
-       lien      : lien de partage du dossier Google Drive / album Google Photos
+    /* --- PHOTOS DES MATCHS : UN DOSSIER DRIVE PAR DISCIPLINE ---
+       Les photos se déposent directement dans le dossier Drive du sport :
+       rien à changer ici après un match. Pour ajouter un sport, ajoute une ligne.
        Exemple :
-       { titre: "Match de foot vs EM", date: "2026-10-15", categorie: "match", lien: "https://..." }, */
-    const ALBUMS = [
-        { titre: "REVELATION JISPO", date: "", categorie: "soiree", lien: "https://drive.google.com/drive/folders/17FGeXP4m2YWb0njFsHSyoQlNpEChMsyU" },
-        { titre: "Match volley F et M", date: "2026-11-10", categorie: "match", lien: "https://drive.google.com/drive/folders/1meFig1I7XlFzUioBa12uRxhogl5RH3Og" },
-        { titre: "SOIRÉE TRAM 4A/5A", date: "", categorie: "soiree", lien: "https://drive.google.com/drive/folders/13F5xMClTA00ke4c0MZNhFlOkatJJt2yR" },
-        { titre: "BEFORE GOLD PCC", date: "", categorie: "soiree", lien: "https://drive.google.com/drive/folders/1MLFgv1eMEwnudwldarzeJHN-MxPBdYFN" },
-        { titre: "WES", date: "", categorie: "soiree", lien: "https://drive.google.com/drive/folders/12GC2DHB7N9aUlBFdoo2qNuJrG4qVRouQ" },
-        { titre: "KAYAK", date: "", categorie: "soiree", lien: "https://drive.google.com/drive/folders/1WSysd_Caj9S4QErmiQGdzrT-1zSQVIPX" },
-        { titre: "MEET YOUR RESPO", date: "", categorie: "soiree", lien: "https://drive.google.com/drive/folders/1J5OZLmoqWk7_u6CagEH4DHB94hF98ymj" },
+       { emoji: "🏓", sport: "Ping-pong", lien: "https://drive.google.com/drive/folders/..." }, */
+    const PHOTOS_SPORTS = [
+        { emoji: "⚽", sport: "Football",   lien: "https://drive.google.com/drive/folders/1m1hxvpnZGact6qB0mU7e14UBQib5STrW" },
+        { emoji: "🏐", sport: "Volley",     lien: "https://drive.google.com/drive/folders/1meFig1I7XlFzUioBa12uRxhogl5RH3Og" },
+        { emoji: "🤾", sport: "Handball",   lien: "https://drive.google.com/drive/folders/11TUTtljVnb4fgWBtQAmv5p13Y24P9dDz" },
+        { emoji: "🏀", sport: "Basket",     lien: "https://drive.google.com/drive/folders/1a6OM7Qzew1XBJG4xWs1kxObR__a3d8Af" },
+        { emoji: "🏉", sport: "Rugby",      lien: "https://drive.google.com/drive/folders/1QRt5LUM038OkUMvOL5DkT-7XwSSnevkj" },
+        { emoji: "🎾", sport: "Tennis",     lien: "https://drive.google.com/drive/folders/17JXuVIXCRdkf-47arF8ibxhTbUK7yvSo" },
+        { emoji: "🏸", sport: "Badminton",  lien: "https://drive.google.com/drive/folders/1KZ2qg2uysYwq_xjyWqZ_FHciQIjinCae" },
+        { emoji: "🏃", sport: "Athlétisme", lien: "https://drive.google.com/drive/folders/1l9PQBRuG6-mvKq2-dSxH2lz8CLSMJOZT" },
+        { emoji: "🥾", sport: "Outdoor",    lien: "https://drive.google.com/drive/folders/10WxAZv9DVBy39JrnmGBHLDh3Vm4-t8-s" },
+        { emoji: "🏊", sport: "Natation",   lien: "https://drive.google.com/drive/folders/1yAHNZE3EYwUKO8sZGcUxdH115aaQ9L4L" },
+    ];
+
+    /* --- PHOTOS DES SOIRÉES ---
+       Dans l'ordre d'affichage : la plus récente en premier.
+       miniature : chemin d'une image du dossier "miniatures" du dépôt
+                   (laisse "" pour afficher un emoji à la place)
+       Exemple :
+       { titre: "Soirée de Noël", lien: "https://drive.google.com/drive/folders/...", miniature: "miniatures/noel.jpg" }, */
+    const SOIREES = [
+        { titre: "REVELATION JISPO",  lien: "https://drive.google.com/drive/folders/17FGeXP4m2YWb0njFsHSyoQlNpEChMsyU", miniature: "" },
+        { titre: "SOIRÉE TRAM 4A/5A", lien: "https://drive.google.com/drive/folders/13F5xMClTA00ke4c0MZNhFlOkatJJt2yR", miniature: "miniatures/soiree-tram.jpg" },
+        { titre: "BEFORE GOLD PCC",   lien: "https://drive.google.com/drive/folders/1MLFgv1eMEwnudwldarzeJHN-MxPBdYFN", miniature: "miniatures/before-gold-pcc.jpg" },
+        { titre: "WES",               lien: "https://drive.google.com/drive/folders/12GC2DHB7N9aUlBFdoo2qNuJrG4qVRouQ", miniature: "miniatures/wes.jpg" },
+        { titre: "KAYAK",             lien: "https://drive.google.com/drive/folders/1WSysd_Caj9S4QErmiQGdzrT-1zSQVIPX", miniature: "miniatures/kayak.jpg" },
+        { titre: "MEET YOUR RESPO",   lien: "https://drive.google.com/drive/folders/1J5OZLmoqWk7_u6CagEH4DHB94hF98ymj", miniature: "" },
     ];
 
     /* --- RESPONSABLES PAR DISCIPLINE ---
@@ -195,37 +210,30 @@
                 ${msg}
             </div>`;
 
-        // ---------- Albums ----------
-        const fmt = d => { const x = new Date(d); return isNaN(x) ? esc(d) : x.toLocaleDateString("fr-FR", {day:"numeric", month:"long", year:"numeric"}); };
-        function renderAlbums(filtre) {
-            const list = ALBUMS
-                .filter(a => filtre === "tous" || a.categorie === filtre)
-                ;
-            if (list.every(a => a.date)) list.sort((a, b) => new Date(b.date) - new Date(a.date));
-            document.getElementById("albums").innerHTML = list.length ? list.map(a => `
-                <a href="${esc(a.lien)}" target="_blank" rel="noopener" class="group bg-white rounded-2xl overflow-hidden calendar-shadow border border-gray-200 hover:-translate-y-1 transition-transform">
-                    <div class="h-36 flex items-center justify-center text-5xl ${a.categorie === "soiree" ? "bg-gradient-to-br from-blue-500 to-blue-900" : "bg-gradient-to-br from-blue-800 to-blue-950"}">
-                        ${a.categorie === "soiree" ? "🎉" : "🏆"}
-                    </div>
-                    <div class="p-4">
-                        <span class="inline-block text-xs font-bold uppercase tracking-wider text-blue-800 bg-blue-50 px-2.5 py-1 rounded-full mb-2">${a.categorie === "soiree" ? "Soirée" : "Match"}</span>
-                        <h3 class="font-bold text-gray-900 group-hover:text-blue-800">${esc(a.titre)}</h3>
-                        ${a.date ? `<p class="text-sm text-gray-500">${fmt(a.date)}</p>` : ""}
-                    </div>
-                </a>`).join("")
-                : empty(`Les albums photos arrivent bientôt ! En attendant, retrouve-nous sur
-                         <a class="text-blue-800 font-semibold underline" href="https://www.instagram.com/strossteam_bds/" target="_blank" rel="noopener">Instagram</a> 📸`);
-        }
-        document.querySelectorAll("#photoFilters button").forEach(b => b.addEventListener("click", () => {
-            document.querySelectorAll("#photoFilters button").forEach(x => {
-                const on = x === b;
-                x.classList.toggle("bg-blue-800", on);
-                x.classList.toggle("text-white", on);
-                x.classList.toggle("text-blue-800", !on);
-            });
-            renderAlbums(b.dataset.f);
-        }));
-        renderAlbums("tous");
+        // ---------- Photos des matchs (par discipline) ----------
+        document.getElementById("sportsPhotos").innerHTML = PHOTOS_SPORTS.length ? PHOTOS_SPORTS.map(p => `
+            <a href="${esc(p.lien)}" target="_blank" rel="noopener" class="group bg-white rounded-2xl p-4 calendar-shadow border border-gray-200 hover:-translate-y-1 hover:border-blue-800 transition flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-full bg-blue-800 text-white flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">${esc(p.emoji || "🏅")}</div>
+                <h4 class="font-extrabold text-blue-900 uppercase text-sm">${esc(p.sport)}</h4>
+                <span class="text-xs font-semibold text-blue-700 mt-1">Voir les photos →</span>
+            </a>`).join("")
+            : empty("Les photos des matchs arrivent bientôt.");
+
+        // ---------- Photos des soirées ----------
+        document.getElementById("albums").innerHTML = SOIREES.length ? SOIREES.map(a => `
+            <a href="${esc(a.lien)}" target="_blank" rel="noopener" class="group bg-white rounded-2xl overflow-hidden calendar-shadow border border-gray-200 hover:-translate-y-1 transition-transform">
+                <div class="aspect-[16/10] overflow-hidden bg-gradient-to-br from-blue-500 to-blue-900 flex items-center justify-center text-5xl">
+                    ${a.miniature
+                        ? `<img src="${esc(a.miniature)}" alt="${esc(a.titre)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">`
+                        : "🎉"}
+                </div>
+                <div class="p-4 flex items-center justify-between gap-3">
+                    <h4 class="font-bold text-gray-900 group-hover:text-blue-800">${esc(a.titre)}</h4>
+                    <span class="text-blue-800 text-sm font-semibold whitespace-nowrap">Voir l'album →</span>
+                </div>
+            </a>`).join("")
+            : empty(`Les albums photos arrivent bientôt ! En attendant, retrouve-nous sur
+                     <a class="text-blue-800 font-semibold underline" href="https://www.instagram.com/strossteam_bds/" target="_blank" rel="noopener">Instagram</a> 📸`);
 
         // ---------- Responsables ----------
         const lien = (href, label) => `<a href="${esc(href)}" target="_blank" rel="noopener" class="block text-blue-800 font-semibold hover:underline truncate">${label}</a>`;
