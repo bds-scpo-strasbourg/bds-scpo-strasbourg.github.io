@@ -199,26 +199,26 @@
     ];
 
     /* --- RESPONSABLES PAR DISCIPLINE ---
-       emoji (facultatif), sport, nom, puis UN OU PLUSIEURS moyens de contact :
+       logo (image du dossier "logos-sports", sinon l'emoji est affiché), emoji (facultatif), sport, nom, puis UN OU PLUSIEURS moyens de contact :
        instagram (pseudo sans @), email, telephone
        Exemple :
        { emoji: "⚽", sport: "Football", nom: "Prénom Nom", instagram: "pseudo", email: "", telephone: "" }, */
     const RESPONSABLES = [
-        { emoji: "💃", sport: "Pompom", nom: "", instagram: "scpompomstras", email: "", telephone: "" },
-        { emoji: "⚽", sport: "Foot", nom: "", instagram: "strossteam_foot", email: "", telephone: "" },
-        { emoji: "🏐", sport: "Volley", nom: "", instagram: "strossteam_volley", email: "", telephone: "" },
-        { emoji: "🤾", sport: "Handball", nom: "", instagram: "strossteam_hand", email: "", telephone: "" },
-        { emoji: "🏀", sport: "Basket", nom: "", instagram: "strossteam_basket", email: "", telephone: "" },
-        { emoji: "🏉", sport: "Rugby", nom: "", instagram: "strossteam_rugby", email: "", telephone: "" },
-        { emoji: "🎾", sport: "Tennis", nom: "", instagram: "strossteam__tennis", email: "", telephone: "" },
-        { emoji: "🏸", sport: "Badminton", nom: "", instagram: "strossteam_bad", email: "", telephone: "" },
-        { emoji: "🏃", sport: "Athlétisme", nom: "", instagram: "strossteam_athle", email: "", telephone: "" },
-        { emoji: "🥾", sport: "Outdoor (randonnée, trail, vélo)", nom: "", instagram: "strossteam_outdoor", email: "", telephone: "" },
-        { emoji: "🏊", sport: "Natation", nom: "", instagram: "strossteam_natation", email: "", telephone: "" },
-        { emoji: "🏓", sport: "Ping-pong", nom: "", instagram: "strossteam_ping", email: "", telephone: "" },
-        { emoji: "🕺", sport: "Danse", nom: "", instagram: "strossteam_danse", email: "", telephone: "" },
-        { emoji: "🏋️", sport: "Muscu", nom: "", instagram: "strossteam_muscu", email: "", telephone: "" },
-        { emoji: "🎯", sport: "Pétanque", nom: "", instagram: "strossteam_petanque", email: "", telephone: "" },
+        { emoji: "💃", sport: "Pompom", logo: "logos-sports/pompom.png", nom: "", instagram: "scpompomstras", email: "", telephone: "" },
+        { emoji: "⚽", sport: "Foot", logo: "logos-sports/foot.png", nom: "", instagram: "strossteam_foot", email: "", telephone: "" },
+        { emoji: "🏐", sport: "Volley", logo: "logos-sports/volley.png", nom: "", instagram: "strossteam_volley", email: "", telephone: "" },
+        { emoji: "🤾", sport: "Handball", logo: "logos-sports/handball.png", nom: "", instagram: "strossteam_hand", email: "", telephone: "" },
+        { emoji: "🏀", sport: "Basket", logo: "logos-sports/basket.png", nom: "", instagram: "strossteam_basket", email: "", telephone: "" },
+        { emoji: "🏉", sport: "Rugby", logo: "logos-sports/rugby.png", nom: "", instagram: "strossteam_rugby", email: "", telephone: "" },
+        { emoji: "🎾", sport: "Tennis", logo: "logos-sports/tennis.png", nom: "", instagram: "strossteam__tennis", email: "", telephone: "" },
+        { emoji: "🏸", sport: "Badminton", logo: "logos-sports/badminton.png", nom: "", instagram: "strossteam_bad", email: "", telephone: "" },
+        { emoji: "🏃", sport: "Athlétisme", logo: "logos-sports/athletisme.png", nom: "", instagram: "strossteam_athle", email: "", telephone: "" },
+        { emoji: "🥾", sport: "Outdoor (randonnée, trail, vélo)", logo: "logos-sports/outdoor.png", nom: "", instagram: "strossteam_outdoor", email: "", telephone: "" },
+        { emoji: "🏊", sport: "Natation", logo: "logos-sports/natation.png", nom: "", instagram: "strossteam_natation", email: "", telephone: "" },
+        { emoji: "🏓", sport: "Ping-pong", logo: "logos-sports/ping-pong.png", nom: "", instagram: "strossteam_ping", email: "", telephone: "" },
+        { emoji: "🕺", sport: "Danse", logo: "logos-sports/danse.png", nom: "", instagram: "strossteam_danse", email: "", telephone: "" },
+        { emoji: "🏋️", sport: "Muscu", logo: "logos-sports/muscu.png", nom: "", instagram: "strossteam_muscu", email: "", telephone: "" },
+        { emoji: "🎯", sport: "Pétanque", logo: "logos-sports/petanque.png", nom: "", instagram: "strossteam_petanque", email: "", telephone: "" },
     ];
 
     (function () {
@@ -259,7 +259,7 @@
             const insta = r.instagram ? String(r.instagram).replace(/^@/, "") : "";
             return `
             <div class="bg-white rounded-2xl p-5 calendar-shadow border border-gray-200 flex gap-4 items-start">
-                <div class="w-14 h-14 shrink-0 rounded-full bg-blue-800 text-white flex items-center justify-center text-2xl">${esc(r.emoji || "🏅")}</div>
+                ${r.logo ? `<img src="${esc(r.logo)}" alt="Logo ${esc(r.sport)}" loading="lazy" class="w-16 h-16 shrink-0 rounded-full object-cover shadow-md">` : `<div class="w-16 h-16 shrink-0 rounded-full bg-blue-800 text-white flex items-center justify-center text-2xl">${esc(r.emoji || "🏅")}</div>`}
                 <div class="min-w-0">
                     <h3 class="text-lg font-extrabold text-blue-900 uppercase">${esc(r.sport)}</h3>
                     ${r.nom ? `<p class="text-gray-700 mb-2">${esc(r.nom)}</p>` : ""}
